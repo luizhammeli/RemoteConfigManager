@@ -14,5 +14,5 @@ public protocol FeatureToggleProtocol {
 
 public struct ToggleModel<T: Codable>: Codable {
     let enabled: Bool
-    let value: T
+    let value: T?
 }
