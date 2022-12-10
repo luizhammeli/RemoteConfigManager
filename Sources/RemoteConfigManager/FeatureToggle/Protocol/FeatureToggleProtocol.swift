@@ -8,5 +8,5 @@
 import Foundation
 
 protocol FeatureToggleProtocol {
-    func fetch<T>(key: String, completion: (T?) -> Void)
+    func fetch<T: Codable>(key: String, completion: (T?) -> Void)
 }

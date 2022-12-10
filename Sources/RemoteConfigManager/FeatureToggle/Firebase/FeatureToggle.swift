@@ -34,7 +34,7 @@ public final class FeatureToggle: FeatureToggleProtocol {
         }
     }
     
-    public func fetch<T>(key: String, completion: (T?) -> Void) {
+    public func fetch<T: Codable>(key: String, completion: (T?) -> Void) {
         guard let value = remoteConfigClient.configValue(forKey: key).stringValue else {
             return completion(nil)
         }
