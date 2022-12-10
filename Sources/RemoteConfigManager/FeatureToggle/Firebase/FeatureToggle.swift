@@ -16,12 +16,11 @@ public final class FeatureToggle: FeatureToggleProtocol {
         self.remoteConfigClient = remoteConfigClient
     }
     
-    public static func configure(remoteConfigClient: RemoteConfig = RemoteConfig.remoteConfig()) {
+    public static func configure() {
         FirebaseApp.configure()
-        FeatureToggle.initiate(remoteConfigClient: remoteConfigClient)
     }
     
-    static func initiate(remoteConfigClient: RemoteConfig = RemoteConfig.remoteConfig()) {
+    public static func initiateRemoteConfig(remoteConfigClient: RemoteConfig = RemoteConfig.remoteConfig()) {
         let settings = RemoteConfigSettings()
         settings.minimumFetchInterval = 0
         remoteConfigClient.configSettings = settings
