@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol FeatureToggleProtocol {
+public protocol FeatureToggleProtocol {
     func fetch<T: Codable>(key: String) -> T?
 }
