@@ -34,12 +34,12 @@ public final class FeatureToggle: FeatureToggleProtocol {
         }
     }
 
-    public func fetch<T: Codable>(key: String) -> T? {
+    public func fetch<T: Codable>(key: String) -> ToggleModel<T>? {
         guard let value = remoteConfigClient.configValue(forKey: key).stringValue else {
             return nil
         }
         
-        guard let decodedValue = try? JSONDecoder().decode(T.self, from: Data(value.utf8)) else { return nil }
+        guard let decodedValue = try? JSONDecoder().decode(ToggleModel<T>.self, from: Data(value.utf8)) else { return nil }
         
         return decodedValue
     }

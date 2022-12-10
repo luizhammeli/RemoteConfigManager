@@ -8,5 +8,11 @@
 import Foundation
 
 public protocol FeatureToggleProtocol {
-    func fetch<T: Codable>(key: String) -> T?
+    func fetch<T: Codable>(key: String) -> ToggleModel<T>?
+}
+
+
+public struct ToggleModel<T: Codable>: Codable {
+    let enabled: Bool
+    let value: T
 }
