@@ -12,6 +12,8 @@ import Foundation
 public final class FeatureToggle: FeatureToggleProtocol {
     public static func configure() {
         FirebaseApp.configure()
+        let settings = RemoteConfigSettings()        
+        RemoteConfig.remoteConfig().configSettings = settings
     }
     
     public func fetch<T>(key: String, completion: (T) -> Void) {
