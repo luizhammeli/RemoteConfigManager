@@ -11,8 +11,8 @@ import Foundation
 
 public final class FeatureToggle: FeatureToggleProtocol {
     let remoteConfigClient: RemoteConfig
-    
-    init(remoteConfigClient: RemoteConfig = RemoteConfig.remoteConfig()) {
+
+    public init(remoteConfigClient: RemoteConfig = RemoteConfig.remoteConfig()) {
         self.remoteConfigClient = remoteConfigClient
     }
     
