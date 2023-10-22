@@ -9,10 +9,17 @@ import FirebaseCore
 import FirebaseRemoteConfig
 import Foundation
 
-public final class FeatureToggle: FeatureToggleProtocol {
-    let remoteConfigClient: RemoteConfig
+public protocol RemoteConfigProtocol: AnyObject {
+    func configValue(forKey key: String?) -> RemoteConfigValue
+    func fetch(completionHandler: ((RemoteConfigFetchStatus, Error?) -> Void)?)
+}
 
-    public init(remoteConfigClient: RemoteConfig = RemoteConfig.remoteConfig()) {
+extension RemoteConfig: RemoteConfigProtocol {}
+
+public final class FeatureToggle: FeatureToggleProtocol {
+    let remoteConfigClient: RemoteConfigProtocol
+
+    public init(remoteConfigClient: RemoteConfigProtocol = RemoteConfig.remoteConfig()) {
         self.remoteConfigClient = remoteConfigClient
     }
     
