@@ -11,7 +11,6 @@ public protocol FeatureToggleProtocol {
     func fetch<T: Codable>(key: String) -> ToggleModel<T>?
 }
 
-
 public struct ToggleModel<T: Codable>: Codable {
     public let enabled: Bool
     public let value: T?

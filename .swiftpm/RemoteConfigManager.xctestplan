@@ -1,0 +1,32 @@
+{
+  "configurations" : [
+    {
+      "id" : "837A7366-4924-47A4-8310-3631B08736CF",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:",
+          "identifier" : "RemoteConfigManager",
+          "name" : "RemoteConfigManager"
+        }
+      ]
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "RemoteConfigManagerTests",
+        "name" : "RemoteConfigManagerTests"
+      }
+    }
+  ],
+  "version" : 1
+}

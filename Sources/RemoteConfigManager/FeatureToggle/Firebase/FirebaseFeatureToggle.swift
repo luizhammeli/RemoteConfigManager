@@ -1,6 +1,6 @@
 //
 //  FeatureToggle.swift
-//  
+//
 //
 //  Created by Luiz Diniz Hammerli on 10/12/22.
 //
@@ -9,25 +9,18 @@ import FirebaseCore
 import FirebaseRemoteConfig
 import Foundation
 
-public protocol RemoteConfigProtocol: AnyObject {
-    func configValue(forKey key: String?) -> RemoteConfigValue
-    func fetch(completionHandler: ((RemoteConfigFetchStatus, Error?) -> Void)?)
-}
-
-extension RemoteConfig: RemoteConfigProtocol {}
-
-public final class FeatureToggle: FeatureToggleProtocol {
+public final class FirebaseFeatureToggle: FeatureToggleProtocol {
     let remoteConfigClient: RemoteConfigProtocol
 
     public init(remoteConfigClient: RemoteConfigProtocol = RemoteConfig.remoteConfig()) {
         self.remoteConfigClient = remoteConfigClient
     }
-    
+
     public static func configure() {
         FirebaseApp.configure()
     }
-    
-    public static func initiateRemoteConfig(remoteConfigClient: RemoteConfig = RemoteConfig.remoteConfig()) {
+
+    public static func initiateRemoteConfig(remoteConfigClient: RemoteConfigProtocol = RemoteConfig.remoteConfig()) {
         let settings = RemoteConfigSettings()
         settings.minimumFetchInterval = 0
         remoteConfigClient.configSettings = settings
@@ -45,9 +38,11 @@ public final class FeatureToggle: FeatureToggleProtocol {
         guard let value = remoteConfigClient.configValue(forKey: key).stringValue else {
             return nil
         }
-        
-        guard let decodedValue = try? JSONDecoder().decode(ToggleModel<T>.self, from: Data(value.utf8)) else { return nil }
-        
+
+        guard let decodedValue = try? JSONDecoder().decode(ToggleModel<T>.self, from: Data(value.utf8)) else {
+            return nil
+        }
+
         return decodedValue
     }
 }
