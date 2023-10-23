@@ -9,7 +9,7 @@ import SwiftUI
 import RemoteConfigManager
 
 struct ContentView: View {
-    let featureToggle: FeatureToggleProtocol
+    private let featureToggle: FeatureToggleProtocol
     @State var toggleModel: ToggleModel<String>? = nil
     
     init(featureToggle: FeatureToggleProtocol = FirebaseFeatureToggle()) {
@@ -17,12 +17,14 @@ struct ContentView: View {
     }
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
+        VStack(spacing: 10) {
             if (toggleModel?.enabled) ?? false {
-                Text(toggleModel?.value ?? "")
+                Image(systemName: "globe")
+                    .imageScale(.large)
+                    .foregroundStyle(.tint)
+                Text("\(toggleModel?.value ?? "")  ✅")
+            } else {
+                Text("Feature Disabled ❌")
             }
         }
         .padding()
