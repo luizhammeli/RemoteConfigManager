@@ -10,7 +10,7 @@ import RemoteConfigManager
 
 struct ContentView: View {
     let featureToggle: FeatureToggleProtocol
-    @State var toggleModel: ToggleModel<Bool>? = nil
+    @State var toggleModel: ToggleModel<String>? = nil
     
     init(featureToggle: FeatureToggleProtocol = FirebaseFeatureToggle()) {
         self.featureToggle = featureToggle
@@ -22,7 +22,7 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             if (toggleModel?.enabled) ?? false {
-                Text("Hello, world!")
+                Text(toggleModel?.value ?? "")
             }
         }
         .padding()
