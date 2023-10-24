@@ -22,7 +22,7 @@ struct ContentView: View {
                 Image(systemName: "globe")
                     .imageScale(.large)
                     .foregroundStyle(.tint)
-                Text("\(toggleModel?.value ?? "")  ✅")
+                Text("\(toggleModel?.value ?? "") ✅")
             } else {
                 Text("Feature Disabled ❌")
             }
